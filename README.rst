@@ -1,4 +1,15 @@
 ============================
+FiskFan1999/toot note
+============================
+remote branch `patch` contains commit d317f26a685f6d46f649c57d61a0f5dff27ec430 which is is pull request https://github.com/ihabunek/toot/pull/176, submitted by justjosias
+
+====
+Installation instructions
+====
+- Change directory to root directory of repository
+- execute "pip3 install ."
+
+============================
 Toot - a Mastodon CLI client
 ============================
 
