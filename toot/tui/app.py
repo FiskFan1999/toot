@@ -329,8 +329,14 @@ class TUI(urwid.Frame):
             links.append((a["url"], a["description"] if a["description"] else a["url"]))
         
         # add links for media in reblogs
-        if "reblog" in status.data and status.data["reblog"] != None:
-            for a in status.data["reblog"]["media_attachments"]:
+        currentDepth = status.data
+        for depth in range(10):
+            if "reblog" not in currentDepth or currentDepth["reblog"] == None:
+                break
+            # otherwise, move to the next nested reblog status
+            # and add links
+            currentDepth = currentDepth["reblog"]
+            for a in currentDepth["media_attachments"]:
                 links.append((a["url"], a["description"] if a["description"] else a["url"]))
         
 
