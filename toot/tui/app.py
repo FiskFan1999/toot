@@ -344,7 +344,8 @@ class TUI(urwid.Frame):
             self.open_overlay(
                 widget=StatusLinks(links),
                 title="Status links",
-                options={"height": len(links) + 2},
+                #options={"height": len(links) + 2},
+                options={"height": 10},
             )
 
     def show_exception(self, exception):
