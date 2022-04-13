@@ -325,19 +325,26 @@ class TUI(urwid.Frame):
 
     def show_links(self, status):
         links = parse_content_links(status.data["content"]) if status else []
-        for a in status.data["media_attachments"]:
-            links.append((a["url"], a["description"] if a["description"] else a["url"]))
         
         # add links for media in reblogs
         currentDepth = status.data
         for depth in range(10):
+            # add links to root-level media attachments
+            # and repeat for reblogged content
+            # if it is there.
+
+            for a in currentDepth["media_attachments"]:
+                text = a["description"] if a["description"] else a["url"]
+                if status.data["sensitive"]:
+                    # media is marked as NSFW/sensitive
+                    # unfortunately "sensitive" is either
+                    # true or false and applies to ALL
+                    # media in this post
+                    text = " <NSFW> " + text
+                links.append((a["url"], text))
             if "reblog" not in currentDepth or currentDepth["reblog"] == None:
                 break
-            # otherwise, move to the next nested reblog status
-            # and add links
             currentDepth = currentDepth["reblog"]
-            for a in currentDepth["media_attachments"]:
-                links.append((a["url"], a["description"] if a["description"] else a["url"]))
         
 
         if links:
