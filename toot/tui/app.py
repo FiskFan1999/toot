@@ -324,7 +324,7 @@ class TUI(urwid.Frame):
         )
 
     def show_links(self, status):
-        links = parse_content_links(status.data["content"]) if status else []
+        links = []
         
         # add links for media in reblogs
         currentDepth = status.data
@@ -332,6 +332,8 @@ class TUI(urwid.Frame):
             # add links to root-level media attachments
             # and repeat for reblogged content
             # if it is there.
+
+            links.extend(parse_content_links(currentDepth["content"]) if currentDepth else [])
 
             for a in currentDepth["media_attachments"]:
                 text = a["description"] if a["description"] else a["url"]
