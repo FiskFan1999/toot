@@ -356,6 +356,9 @@ class TUI(urwid.Frame):
                 #options={"height": len(links) + 2},
                 options={"height": 10},
             )
+        else:
+            self.footer.set_message("No links found.")
+            self.loop.set_alarm_in(5, lambda *args: self.footer.clear_message())
 
     def show_exception(self, exception):
         self.open_overlay(
