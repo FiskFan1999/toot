@@ -48,6 +48,17 @@ Install from `AUR <https://aur.archlinux.org/packages/toot/>`_.
 
     yay -S toot
 
+
+Fedora
+-------------
+
+Toot is available from the Fedora package repository.
+
+.. code-block:: bash
+
+    sudo dnf install toot
+
+
 FreeBSD ports
 -------------
 
@@ -118,4 +129,4 @@ Source
 ------
 
 Finally, you can get the latest source distribution, wheel or debian package
-`from Github <https://github.com/ihabunek/toot/releases/latest/>`_.
+`from GitHub <https://github.com/ihabunek/toot/releases/latest/>`_.
